@@ -5,6 +5,7 @@ import React, {
   RefObject,
   useLayoutEffect,
   useRef,
+  useState,
 } from "react";
 import { AriaMenuProps, MenuTriggerProps } from "@react-types/menu";
 import { useMenuTriggerState } from "@react-stately/menu";
@@ -48,29 +49,24 @@ export function MenuItem<T>({
   item,
   state,
   onAction,
-  disabledKeys,
   onClose,
+  disabledKeys,
 }: MenuItemProps<T>): JSX.Element {
-  const ref = React.useRef<HTMLLIElement>(null);
+  const ref = useRef<HTMLLIElement>(null);
   const isDisabled = disabledKeys && [...disabledKeys].includes(item.key);
 
   const { menuItemProps } = useMenuItem(
-    {
-      key: item.key,
-      isDisabled,
-      onAction,
-      onClose,
-    },
+    { key: item.key, isDisabled, onAction, onClose },
     state,
     ref
   );
-
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
     <li
       {...mergeProps(menuItemProps, hoverProps, focusProps)}
+      style={{ backgroundColor: "blue", margin: "10px 0", color: "white" }}
       ref={ref}
       className={clsx(
         styles["sapphire-menu-item"],
@@ -103,7 +99,12 @@ const MenuPopup = <T extends object>(
   );
 
   return (
-    <ul {...menuProps} ref={menuRef} className={styles["sapphire-menu"]}>
+    <ul
+      {...menuProps}
+      ref={menuRef}
+      className={styles["sapphire-menu"]}
+      style={{ backgroundColor: "red" }}
+    >
       {[...state.collection].map((item) => {
         if (item.type === "section") {
           throw new Error("Sections not supported");
@@ -114,12 +115,7 @@ const MenuPopup = <T extends object>(
             item={item}
             state={state}
             onClose={props.onClose}
-            onAction={(key: React.Key) => {
-              if (props.onAction) {
-                props.onAction(key.toString());
-              }
-              props.onClose();
-            }}
+            onAction={props.onAction as (key: React.Key) => void}
             disabledKeys={props.disabledKeys}
           />
         );
@@ -129,9 +125,7 @@ const MenuPopup = <T extends object>(
 };
 
 function _Menu<T extends object>(
-  props: SapphireMenuProps<T> & {
-    setShowSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
-  },
+  props: SapphireMenuProps<T>,
   ref: FocusableRef<HTMLButtonElement>
 ) {
   const { renderTrigger, shouldFlip = true } = props;
@@ -171,20 +165,20 @@ function _Menu<T extends object>(
       <Popover
         isOpen={state.isOpen}
         ref={popoverRef}
-        style={overlayProps.style || {}}
+        style={{
+          ...overlayProps.style,
+          backgroundColor: "green",
+        }}
+        // style={{ backgroundColor: "green" }}
         className={clsx(styles["sapphire-menu-container"])}
         shouldCloseOnBlur
-        onClose={() => {
-          state.close();
-          state.setOpen(false);
-          props.setShowSubmenu(false);
-        }}
+        onClose={state.close}
       >
         <FocusScope>
           <MenuPopup<T>
             {...mergeProps(props, menuProps)}
             autoFocus={state.focusStrategy || true}
-            onClose={() => {}}
+            onClose={state.close}
           />
         </FocusScope>
       </Popover>
@@ -193,8 +187,6 @@ function _Menu<T extends object>(
 }
 
 export const Menu = React.forwardRef(_Menu) as <T extends object>(
-  props: SapphireMenuProps<T> & {
-    setShowSubmenu: React.Dispatch<React.SetStateAction<boolean>>;
-  },
+  props: SapphireMenuProps<T>,
   ref: FocusableRef<HTMLButtonElement>
 ) => ReactElement;
