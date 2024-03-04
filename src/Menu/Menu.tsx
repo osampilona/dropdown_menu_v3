@@ -5,7 +5,7 @@ import React, {
   useRef,
   forwardRef,
 } from "react";
-import { useMenuTriggerState } from "@react-stately/menu";
+import { MenuTriggerState, useMenuTriggerState } from "@react-stately/menu";
 import { useTreeState } from "@react-stately/tree";
 import { useButton } from "@react-aria/button";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
@@ -34,7 +34,10 @@ export function SubMenuItem<T>({
   onAction,
   disabledKeys,
   onClose,
-}: MenuItemProps<T>): JSX.Element {
+  statePopOver,
+}: MenuItemProps<T> & {
+  statePopOver: MenuTriggerState;
+}): JSX.Element {
   const ref = useRef<HTMLLIElement>(null);
   const isDisabled = disabledKeys && [...disabledKeys].includes(item.key);
 
@@ -51,6 +54,24 @@ export function SubMenuItem<T>({
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing();
+
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      console.log(event.key);
+      console.log(statePopOver.isOpen);
+      if (event.key === "ArrowLeft" && statePopOver.isOpen) {
+        // Close submenu logic here
+        statePopOver.close();
+      }
+    };
+
+    const node = ref.current;
+    node?.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      node?.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [statePopOver, item.hasChildNodes]);
 
   return (
     <li
@@ -98,6 +119,7 @@ const SubMenuPopUp = <T extends object>(
           onClose={props.onClose}
           onAction={props.onAction as (key: React.Key) => void}
           disabledKeys={props.disabledKeys}
+          statePopOver={props.statePopOver}
         />
       );
     });
@@ -173,6 +195,7 @@ const SubMenu = <T extends object>(props: SapphireSubMenuProps<T>) => {
             {...mergeProps(props, menuProps)}
             autoFocus={statePopOver.focusStrategy || true}
             onClose={statePopOver.close}
+            statePopOver={statePopOver}
           />
         </FocusScope>
       </Popover>
@@ -220,7 +243,9 @@ export function MenuItem<T>({
   );
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
-  const { focusProps, isFocusVisible } = useFocusRing();
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing();
+
+  console.log("FOCUS PROPS:: ", isFocused);
 
   // Function to render the Items from a SubmenuItem with NodeChilds
   const renderSubMenuItems: (item: any) => CollectionChildren<object> = (
