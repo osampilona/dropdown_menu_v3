@@ -1,9 +1,8 @@
-import React, { SetStateAction, StrictMode } from "react"; // Ensure React is imported
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { Menu, Item } from "./Menu";
 
-// Define the App component
 function App() {
   return (
     <StrictMode>
@@ -25,7 +24,6 @@ function App() {
   );
 }
 
-// Render the App component to the DOM
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement || document.createElement("div"));
 

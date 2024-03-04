@@ -7,7 +7,6 @@
   "dependencies": {
     "@react-aria/button": "3.6.4",
     "@react-aria/menu": "3.7.1",
-    "@react-spectrum/menu": "^3.18.1",
     "@react-spectrum/utils": "3.8.1",
     "@react-stately/collections": "3.5.1",
     "@react-stately/menu": "3.4.4",
