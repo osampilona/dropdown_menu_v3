@@ -4,9 +4,6 @@ import { Node } from "@react-types/shared";
 import { TreeState } from "@react-stately/tree";
 import { MenuTriggerState } from "@react-stately/menu";
 
-// AriaMenuProps<T> related to the CollectionChildren
-// MenuTriggerProps necessary to be used
-// on the useButton() on SubMenu Component
 export type SapphireSubMenuProps<T extends object> = AriaMenuProps<T> &
   MenuTriggerProps & {
     renderTrigger: (
