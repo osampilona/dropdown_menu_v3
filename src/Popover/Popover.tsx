@@ -1,9 +1,4 @@
-import React, {
-  ForwardedRef,
-  forwardRef,
-  HTMLAttributes,
-  CSSProperties
-} from "react";
+import { ForwardedRef, forwardRef, HTMLAttributes, CSSProperties } from "react";
 import { useDOMRef } from "@react-spectrum/utils";
 import { useObjectRef } from "@react-aria/utils";
 import { DOMRef } from "@react-types/shared";
@@ -32,7 +27,7 @@ function Popover(props: PopoverProps, ref: DOMRef<HTMLDivElement>) {
     isDismissable = true,
     isOpen,
     className,
-    style
+    style,
   } = props;
   const domRef = useDOMRef(ref);
   if (!isOpen) {
@@ -77,7 +72,7 @@ const PopoverWrapper = forwardRef(function PopoverWrapper(
     ref
   );
   const { modalProps } = useModal({
-    isDisabled: isNonModal
+    isDisabled: isNonModal,
   });
 
   return (
