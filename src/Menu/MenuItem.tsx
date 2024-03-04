@@ -38,12 +38,12 @@ export function MenuItem<T>({
       onAction: () => onActionMenuItems(),
       onClose,
     },
-    state!,
+    state,
     ref
   );
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
-  const { focusProps, isFocusVisible, isFocused } = useFocusRing();
+  const { focusProps, isFocusVisible } = useFocusRing();
 
   const renderSubMenuItems: (item: any) => CollectionChildren<object> = (
     item

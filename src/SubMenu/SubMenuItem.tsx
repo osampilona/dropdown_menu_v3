@@ -41,6 +41,7 @@ export function SubMenuItem<T>({
       console.log(statePopOver.isOpen);
       if (event.key === "ArrowLeft" && statePopOver.isOpen) {
         statePopOver.close();
+        console.log("submenu is closed");
       }
     };
 

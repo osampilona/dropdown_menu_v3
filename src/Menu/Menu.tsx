@@ -1,8 +1,8 @@
 import { ReactElement, useLayoutEffect, useRef, forwardRef } from "react";
 import { useMenuTriggerState } from "@react-stately/menu";
+import { useMenuTrigger } from "@react-aria/menu";
 import { useButton } from "@react-aria/button";
 import { FocusScope } from "@react-aria/focus";
-import { useMenuTrigger } from "@react-aria/menu";
 import { useOverlayPosition } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useFocusableRef, useUnwrapDOMRef } from "@react-spectrum/utils";
