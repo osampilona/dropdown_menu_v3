@@ -24,6 +24,7 @@ The application supports an intuitive keyboard navigation flow:
 5. **Options for closing nested menu**:
    1. No matter on which item in nested menu user is focused, they can close nested menu by pressing "ArrowLeft" and bring back focus to main menu on "Move to" item.
    2. Pressing "Enter" on selected item nested menu closes and focus is brought back to the main menu.
+6. **Closing main menu**: User can press "Esc" button.
 
 ## Mouse Interaction
 
