@@ -29,7 +29,6 @@ export function MenuItem<T>({
     console.log(key);
     if (checkNodeChild) {
       statePopOver.open();
-      console.log("submenu is open");
     }
   };
 
