@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { MenuTriggerState } from "@react-stately/menu";
 import { useFocusRing } from "@react-aria/focus";
 import { useMenuItem } from "@react-aria/menu";
@@ -14,6 +14,7 @@ export function SubMenuItem<T>({
   onAction,
   disabledKeys,
   onClose,
+  statePopOver,
 }: MenuItemProps<T> & {
   statePopOver: MenuTriggerState;
 }) {
@@ -33,6 +34,34 @@ export function SubMenuItem<T>({
 
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing();
+
+  //replicate the useEffect to MenuItem component
+  //event.key should be "ArrowRight" and state.isOpen should be true
+  //in MenuItem we probablly need item.hasChildNodes at the bottom of the useEffect
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      console.log(event.key);
+      console.log(statePopOver.isOpen);
+      if (event.key === "ArrowLeft" && statePopOver.isOpen) {
+        //we should close the menu here together with statePopOver.close()
+        statePopOver.close();
+        console.log("submenu is closed");
+        ref.current?.focus();
+        console.log("FOCUSED ITEM::  ", ref.current);
+        state.toggleKey(item.key);
+        console.log("TOGGLE KEY::  ", item.key);
+      }
+    };
+
+    const node = ref.current;
+    node?.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      node?.removeEventListener("keydown", handleKeyDown);
+    };
+
+    //item.hasChildNodes is not needed here
+  }, [statePopOver, item.hasChildNodes]);
 
   return (
     <li
