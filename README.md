@@ -20,19 +20,32 @@ The application supports an intuitive keyboard navigation flow:
 1. **Initial Focus**: Users can press the "tab" key to focus on the "Actions" button.
 2. **Opening the Main Menu**: Pressing "Enter" opens the main menu.
 3. **Navigating Menu Items**: Users can navigate through menu items using the "ArrowUp" and "ArrowDown" keys. Pressing "Enter" on specific items will either perform an action or, for items like "Copy application", "Rename application", and "Delete application", no action will be taken.
-4. **Nested Menus**: Accessing nested menus is straightforward. Users can navigate to an item like "Move to", press "Enter" or "ArrowRight" to open a nested menu, and then use "ArrowUp" or "ArrowDown" to select a specific item within the nested menu. Pressing "Enter" selects the item and closes the nested menu, bringing the focus back to the main menu.
+4. **Nested Menus**: Accessing nested menus is straightforward. Users can navigate to an item like "Move to", press "Enter" or "ArrowRight" to open a nested menu, and then use "ArrowUp" or "ArrowDown" to select a specific item within the nested menu.
+5. **Options for closing nested menu**:
+   1. No matter on which item in nested menu user is focused, they can close nested menu by pressing "ArrowLeft" and bring back focus to main menu on "Move to" item.
+   2. Pressing "Enter" on selected item nested menu closes and focus is brought back to the main menu.
 
 ## Mouse Interaction
 
 With mouse interaction, the application behaves as expected:
 
-- Clicking an item within a nested menu closes the nested menu while keeping the main menu open.
-- The main menu can be closed by clicking outside the menu area or by interacting with the "Actions" button again.
+1. Clicking the "Actions" button main menu opens.
+2. Clicking on "Copy application", "Rename application", and "Delete application" will not perform any action.
+3. Clicking on "Move to" item opens nested menu.
+4. Clicking an item within a nested menu closes the nested menu while keeping the main menu open.
+5. The main menu can be closed by clicking outside the menu area or by interacting with the "Actions" button again.
 
 ## UI Consistency
 
 The application boasts a pixel-perfect UI, ensuring that the visual elements meet the specified design requirements without compromise.
 
+## Space for Improvement
+
+While the application achieves its core objectives, there are areas that could be enhanced with deeper knowledge and application of `react-aria` and `react-stately`:
+
+1. **Direct Selection of First Item in Nested Menu**: Ideally, when a nested menu is opened, the first item within it should be directly selected to streamline navigation.
+2. **Closing Behavior on Item Selection**: Currently, selecting an item in a nested menu closes only the nested menu, but it would be more intuitive if both the nested menu and the main menu were to close upon selection. This adjustment would provide a cleaner and more consistent user experience.
+
 ## Conclusion
 
-This React application demonstrates the effective use of `react-aria` and `react-stately` to achieve an accessible and user-friendly menu navigation experience. By adhering to the specified dependency versions and implementing a comprehensive keyboard and mouse interaction model, this application sets a high standard for UI component development in React environments.
+This React application demonstrates the effective use of `react-aria` and `react-stately` to achieve an accessible and user-friendly menu navigation experience. By adhering to the specified dependency versions and implementing a comprehensive keyboard and mouse interaction model, this application sets a high standard for UI component development in React environments. Future enhancements, particularly in the areas identified for improvement, could further refine the user experience and functionality.
