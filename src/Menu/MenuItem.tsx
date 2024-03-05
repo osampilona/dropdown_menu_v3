@@ -26,7 +26,6 @@ export function MenuItem<T>({
   let statePopOver = useMenuTriggerState({});
 
   const onActionMenuItems = (key: React.Key) => {
-    console.log(key);
     if (checkNodeChild) {
       statePopOver.open();
     }
