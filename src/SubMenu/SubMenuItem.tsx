@@ -37,12 +37,8 @@ export function SubMenuItem<T>({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      console.log(event.key);
-      console.log(statePopOver.isOpen);
       if (event.key === "ArrowLeft" && statePopOver.isOpen) {
-        //we should close the menu here together with statePopOver.close()
         statePopOver.close();
-        console.log("submenu is closed");
       }
     };
 

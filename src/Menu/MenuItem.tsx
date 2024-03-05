@@ -48,8 +48,6 @@ export function MenuItem<T>({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      console.log(event.key);
-      console.log(statePopOver.isOpen);
       if (event.key === "ArrowRight" && !statePopOver.isOpen) {
         statePopOver.open();
       }
