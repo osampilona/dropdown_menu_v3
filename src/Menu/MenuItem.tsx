@@ -52,11 +52,6 @@ export function MenuItem<T>({
       console.log(statePopOver.isOpen);
       if (event.key === "ArrowRight" && !statePopOver.isOpen) {
         statePopOver.open();
-        console.log("submenu is closed");
-        ref.current?.focus();
-        console.log("FOCUSED ITEM::  ", ref.current);
-        state.toggleKey(item.key);
-        console.log("TOGGLE KEY::  ", item.key);
       }
     };
 

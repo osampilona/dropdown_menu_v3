@@ -43,10 +43,6 @@ export function SubMenuItem<T>({
         //we should close the menu here together with statePopOver.close()
         statePopOver.close();
         console.log("submenu is closed");
-        ref.current?.focus();
-        console.log("FOCUSED ITEM::  ", ref.current);
-        state.toggleKey(item.key);
-        console.log("TOGGLE KEY::  ", item.key);
       }
     };
 
