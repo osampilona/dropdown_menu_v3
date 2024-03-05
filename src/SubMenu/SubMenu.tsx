@@ -12,14 +12,13 @@ import SubMenuPopUp from "./SubMenuPopUp";
 import styles from "../Menu/Menu.module.css";
 import clsx from "clsx";
 
-const SubMenu = <T extends object>(props: SapphireSubMenuProps<T>) => {
+function SubMenu<T extends object>(props: SapphireSubMenuProps<T>) {
   const {
     renderTrigger,
     refTriggerItem,
     statePopOver,
     shouldFlip = true,
   } = props;
-
   const popoverRef = useRef<DOMRefValue<HTMLDivElement>>(null);
   const unwrappedPopoverRef = useUnwrapDOMRef(popoverRef);
 
@@ -75,6 +74,6 @@ const SubMenu = <T extends object>(props: SapphireSubMenuProps<T>) => {
       </Popover>
     </>
   );
-};
+}
 
 export default SubMenu;

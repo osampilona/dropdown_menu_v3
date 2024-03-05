@@ -11,7 +11,7 @@ import { Item } from "./index";
 import styles from "../Menu/Menu.module.css";
 import clsx from "clsx";
 
-export function MenuItem<T>({
+function MenuItem<T>({
   item,
   state,
   disabledKeys,
@@ -108,3 +108,5 @@ export function MenuItem<T>({
     </>
   );
 }
+
+export default MenuItem;

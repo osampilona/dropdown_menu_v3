@@ -8,7 +8,7 @@ import { MenuItemProps } from "../Menu/menu-interface";
 import styles from "../Menu/Menu.module.css";
 import clsx from "clsx";
 
-export function SubMenuItem<T>({
+function SubMenuItem<T>({
   item,
   state,
   onAction,
@@ -69,3 +69,5 @@ export function SubMenuItem<T>({
     </li>
   );
 }
+
+export default SubMenuItem;

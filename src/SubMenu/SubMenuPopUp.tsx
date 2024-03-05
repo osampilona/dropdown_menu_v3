@@ -3,15 +3,15 @@ import { useTreeState } from "@react-stately/tree";
 import { useMenu } from "@react-aria/menu";
 import { FocusStrategy } from "@react-types/shared";
 import { SapphireSubMenuProps } from "../Menu/menu-interface";
-import { SubMenuItem } from "./SubMenuItem";
+import SubMenuItem from "./SubMenuItem";
 import styles from "../Menu/Menu.module.css";
 
-const SubMenuPopUp = <T extends object>(
+function SubMenuPopUp<T extends object>(
   props: {
     autoFocus: FocusStrategy;
     onClose: () => void;
   } & SapphireSubMenuProps<T>
-) => {
+) {
   const state = useTreeState({ ...props });
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -44,6 +44,6 @@ const SubMenuPopUp = <T extends object>(
       </ul>
     </>
   );
-};
+}
 
 export default SubMenuPopUp;
