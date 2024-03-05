@@ -33,8 +33,9 @@ With mouse interaction, the application behaves as expected:
 1. Clicking the "Actions" button main menu opens.
 2. Clicking on "Copy application", "Rename application", and "Delete application" will not perform any action.
 3. Clicking on "Move to" item opens nested menu.
-4. Clicking an item within a nested menu closes the nested menu while keeping the main menu open.
-5. The main menu can be closed by clicking outside the menu area or by interacting with the "Actions" button again.
+4. Moving mouse from the opened nested menu to the main menu can close the nested menu.
+5. Clicking an item within a nested menu closes the nested menu while keeping the main menu open.
+6. The main menu can be closed by clicking outside the menu area or by interacting with the "Actions" button again.
 
 ## UI Consistency
 
