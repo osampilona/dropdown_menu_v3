@@ -60,7 +60,7 @@ function _Menu<T extends object>(
         shouldCloseOnBlur
         onClose={state.close}
       >
-        <FocusScope>
+        <FocusScope autoFocus>
           <MenuPopup<T>
             {...mergeProps(props, menuProps)}
             autoFocus={state.focusStrategy || true}

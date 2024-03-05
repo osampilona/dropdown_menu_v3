@@ -35,9 +35,6 @@ export function SubMenuItem<T>({
   const { hoverProps, isHovered } = useHover({ isDisabled });
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  //replicate the useEffect to MenuItem component
-  //event.key should be "ArrowRight" and state.isOpen should be true
-  //in MenuItem we probablly need item.hasChildNodes at the bottom of the useEffect
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       console.log(event.key);
@@ -59,9 +56,7 @@ export function SubMenuItem<T>({
     return () => {
       node?.removeEventListener("keydown", handleKeyDown);
     };
-
-    //item.hasChildNodes is not needed here
-  }, [statePopOver, item.hasChildNodes]);
+  }, [statePopOver]);
 
   return (
     <li
