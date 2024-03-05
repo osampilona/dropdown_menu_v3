@@ -42,6 +42,8 @@ export function SubMenuItem<T>({
       if (event.key === "ArrowLeft" && statePopOver.isOpen) {
         statePopOver.close();
         console.log("submenu is closed");
+        ref.current?.focus();
+        console.log("focus is back to parent");
       }
     };
 

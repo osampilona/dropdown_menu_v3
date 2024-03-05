@@ -25,9 +25,11 @@ export function MenuItem<T>({
 
   let statePopOver = useMenuTriggerState({});
 
-  const onActionMenuItems = () => {
+  const onActionMenuItems = (key: React.Key) => {
+    console.log(key);
     if (checkNodeChild) {
       statePopOver.open();
+      console.log("submenu is open");
     }
   };
 
@@ -35,7 +37,7 @@ export function MenuItem<T>({
     {
       key: item.key,
       isDisabled,
-      onAction: () => onActionMenuItems(),
+      onAction: (key) => onActionMenuItems(key),
       onClose,
     },
     state,
