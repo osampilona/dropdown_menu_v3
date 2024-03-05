@@ -64,7 +64,7 @@ const SubMenu = <T extends object>(props: SapphireSubMenuProps<T>) => {
         shouldCloseOnBlur
         onClose={statePopOver.close}
       >
-        <FocusScope>
+        <FocusScope restoreFocus>
           <SubMenuPopUp<T>
             {...mergeProps(props, menuProps)}
             autoFocus={statePopOver.focusStrategy || true}
