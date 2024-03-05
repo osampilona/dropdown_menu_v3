@@ -47,6 +47,7 @@ While the application achieves its core objectives, there are areas that could b
 
 1. **Direct Selection of First Item in Nested Menu**: Ideally, when a nested menu is opened, the first item within it should be directly selected to streamline navigation.
 2. **Closing Behavior on Item Selection**: Currently, selecting an item in a nested menu closes only the nested menu, but it would be more intuitive if both the nested menu and the main menu were to close upon selection. This adjustment would provide a cleaner and more consistent user experience.
+3. **Enhancing UI**: User interface can and should be enhanced with indicator next to the "Move to" text, so user knows there should be some action applied to this specific item.
 
 ## Conclusion
 
